@@ -1,0 +1,204 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <OutputType>Library</OutputType>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Skillicons\AcidicConcoction.png" />
+    <None Remove="Resources\Skillicons\AncestralCry.png" />
+    <None Remove="Resources\Skillicons\AncestralWarriorTotem.png" />
+    <None Remove="Resources\Skillicons\Arc.png" />
+    <None Remove="Resources\Skillicons\ArmourBreaker.png" />
+    <None Remove="Resources\Skillicons\ArmourPiercingBolts.png" />
+    <None Remove="Resources\Skillicons\BallLightning.png" />
+    <None Remove="Resources\Skillicons\Barrage.png" />
+    <None Remove="Resources\Skillicons\Berserk.png" />
+    <None Remove="Resources\Skillicons\BleedingConcoction.png" />
+    <None Remove="Resources\Skillicons\Blink.png" />
+    <None Remove="Resources\Skillicons\BloodhoundsMark.png" />
+    <None Remove="Resources\Skillicons\BloodHunt.png" />
+    <None Remove="Resources\Skillicons\BoneBlast.png" />
+    <None Remove="Resources\Skillicons\BoneCage.png" />
+    <None Remove="Resources\Skillicons\BoneOffering.png" />
+    <None Remove="Resources\Skillicons\Boneshatter.png" />
+    <None Remove="Resources\Skillicons\Bonestorm.png" />
+    <None Remove="Resources\Skillicons\Comet.png" />
+    <None Remove="Resources\Skillicons\Conductivity.png" />
+    <None Remove="Resources\Skillicons\Consecrate.png" />
+    <None Remove="Resources\Skillicons\Contagion.png" />
+    <None Remove="Resources\Skillicons\Convalescences.png" />
+    <None Remove="Resources\Skillicons\CullTheWeak.png" />
+    <None Remove="Resources\Skillicons\DarkEffigy.png" />
+    <None Remove="Resources\Skillicons\DarkPact.png" />
+    <None Remove="Resources\Skillicons\Decompose.png" />
+    <None Remove="Resources\Skillicons\Despair.png" />
+    <None Remove="Resources\Skillicons\DetonateDead.png" />
+    <None Remove="Resources\Skillicons\DetonatingArrow.png" />
+    <None Remove="Resources\Skillicons\Disengage.png" />
+    <None Remove="Resources\Skillicons\Earthquake.png" />
+    <None Remove="Resources\Skillicons\Earthshatter.png" />
+    <None Remove="Resources\Skillicons\ElectrocutingArrow.png" />
+    <None Remove="Resources\Skillicons\ElementalExpression.png" />
+    <None Remove="Resources\Skillicons\ElementalStorm.png" />
+    <None Remove="Resources\Skillicons\ElementalSundering.png" />
+    <None Remove="Resources\Skillicons\ElementalSurge.png" />
+    <None Remove="Resources\Skillicons\ElementalWeakness.png" />
+    <None Remove="Resources\Skillicons\EmberFusillade.png" />
+    <None Remove="Resources\Skillicons\EncaseinJade.png" />
+    <None Remove="Resources\Skillicons\EnervatingNova.png" />
+    <None Remove="Resources\Skillicons\Enfeeble.png" />
+    <None Remove="Resources\Skillicons\EscapeShot.png" />
+    <None Remove="Resources\Skillicons\EssenceDrain.png" />
+    <None Remove="Resources\Skillicons\ExplosiveConcoction.png" />
+    <None Remove="Resources\Skillicons\ExplosiveGrenade.png" />
+    <None Remove="Resources\Skillicons\ExplosiveSpear.png" />
+    <None Remove="Resources\Skillicons\Exsanguinate.png" />
+    <None Remove="Resources\Skillicons\EyeofWinter.png" />
+    <None Remove="Resources\Skillicons\FallingThunder.png" />
+    <None Remove="Resources\Skillicons\FangsofFrost.png" />
+    <None Remove="Resources\Skillicons\FeastofFlesh.png" />
+    <None Remove="Resources\Skillicons\Fireball.png" />
+    <None Remove="Resources\Skillicons\Firebolt.png" />
+    <None Remove="Resources\Skillicons\Firestorm.png" />
+    <None Remove="Resources\Skillicons\Flameblast.png" />
+    <None Remove="Resources\Skillicons\FlameWall.png" />
+    <None Remove="Resources\Skillicons\Flammability.png" />
+    <None Remove="Resources\Skillicons\ForgeHammer.png" />
+    <None Remove="Resources\Skillicons\FortifyingCry.png" />
+    <None Remove="Resources\Skillicons\FragmentationRounds.png" />
+    <None Remove="Resources\Skillicons\FreezingSalvo.png" />
+    <None Remove="Resources\Skillicons\FreezingSalvoskill.png" />
+    <None Remove="Resources\Skillicons\FreezingShards.png" />
+    <None Remove="Resources\Skillicons\Frostbolt.png" />
+    <None Remove="Resources\Skillicons\FrostBomb.png" />
+    <None Remove="Resources\Skillicons\FrostDarts.png" />
+    <None Remove="Resources\Skillicons\FrostWall.png" />
+    <None Remove="Resources\Skillicons\FrozenLocus.png" />
+    <None Remove="Resources\Skillicons\FulminatingConcoction.png" />
+    <None Remove="Resources\Skillicons\GalvanicField.png" />
+    <None Remove="Resources\Skillicons\GalvanicShards.png" />
+    <None Remove="Resources\Skillicons\GasArrow.png" />
+    <None Remove="Resources\Skillicons\GlacialCascade.png" />
+    <None Remove="Resources\Skillicons\GlacialLance.png" />
+    <None Remove="Resources\Skillicons\HammerOfTheGods.png" />
+    <None Remove="Resources\Skillicons\HeraldOfAsh.png" />
+    <None Remove="Resources\Skillicons\Hexblast.png" />
+    <None Remove="Resources\Skillicons\HighVelocityRounds.png" />
+    <None Remove="Resources\Skillicons\Hypothermia.png" />
+    <None Remove="Resources\Skillicons\IceNova.png" />
+    <None Remove="Resources\Skillicons\IceShards.png" />
+    <None Remove="Resources\Skillicons\IceShot.png" />
+    <None Remove="Resources\Skillicons\IceTippedArrows.png" />
+    <None Remove="Resources\Skillicons\IncendiaryShot.png" />
+    <None Remove="Resources\Skillicons\Incinerate.png" />
+    <None Remove="Resources\Skillicons\InevitableAgony.png" />
+    <None Remove="Resources\Skillicons\InfernalCry.png" />
+    <None Remove="Resources\Skillicons\KillingPalm.png" />
+    <None Remove="Resources\Skillicons\LeapSlam.png" />
+    <None Remove="Resources\Skillicons\LightningArrow.png" />
+    <None Remove="Resources\Skillicons\LightningBolt.png" />
+    <None Remove="Resources\Skillicons\LightningConduit.png" />
+    <None Remove="Resources\Skillicons\LightningRod.png" />
+    <None Remove="Resources\Skillicons\LightningSpear.png" />
+    <None Remove="Resources\Skillicons\LightningWarp.png" />
+    <None Remove="Resources\Skillicons\LivingBomb.png" />
+    <None Remove="Resources\Skillicons\lock.png" />
+    <None Remove="Resources\Skillicons\MagneticSalvo.png" />
+    <None Remove="Resources\Skillicons\ManaTempest.png" />
+    <None Remove="Resources\Skillicons\MoltenBlast.png" />
+    <None Remove="Resources\Skillicons\OrbofStorms.png" />
+    <None Remove="Resources\Skillicons\PainOffering.png" />
+    <None Remove="Resources\Skillicons\PerfectStrike.png" />
+    <None Remove="Resources\Skillicons\PermafrostBolts.png" />
+    <None Remove="Resources\Skillicons\PoisonburstArrow.png" />
+    <None Remove="Resources\Skillicons\PowerSiphon.png" />
+    <None Remove="Resources\Skillicons\PrimalStrikes.png" />
+    <None Remove="Resources\Skillicons\ProfaneRitual.png" />
+    <None Remove="Resources\Skillicons\RainofArrows.png" />
+    <None Remove="Resources\Skillicons\Rake.png" />
+    <None Remove="Resources\Skillicons\RapidAssault.png" />
+    <None Remove="Resources\Skillicons\ResonatingShield.png" />
+    <None Remove="Resources\Skillicons\RitualSacrifice.png" />
+    <None Remove="Resources\Skillicons\RollingSlam.png" />
+    <None Remove="Resources\Skillicons\SeismicCry.png" />
+    <None Remove="Resources\Skillicons\ShatteringConcoction.png" />
+    <None Remove="Resources\Skillicons\ShieldCharge.png" />
+    <None Remove="Resources\Skillicons\ShieldWall.png" />
+    <None Remove="Resources\Skillicons\ShockchainArrow.png" />
+    <None Remove="Resources\Skillicons\ShockwaveTotem.png" />
+    <None Remove="Resources\Skillicons\SigilofPower.png" />
+    <None Remove="Resources\Skillicons\Snap.png" />
+    <None Remove="Resources\Skillicons\Snipe.png" />
+    <None Remove="Resources\Skillicons\SnipersMark.png" />
+    <None Remove="Resources\Skillicons\SolarOrb.png" />
+    <None Remove="Resources\Skillicons\SoulOffering.png" />
+    <None Remove="Resources\Skillicons\Soulrend.png" />
+    <None Remove="Resources\Skillicons\Spark.png" />
+    <None Remove="Resources\Skillicons\Spearfield.png" />
+    <None Remove="Resources\Skillicons\SpearofSolaris.png" />
+    <None Remove="Resources\Skillicons\SpiralVolley.png" />
+    <None Remove="Resources\Skillicons\StaggeringPalm.png" />
+    <None Remove="Resources\Skillicons\Stampede.png" />
+    <None Remove="Resources\Skillicons\StormcallerArrow.png" />
+    <None Remove="Resources\Skillicons\StormLance.png" />
+    <None Remove="Resources\Skillicons\StormWave.png" />
+    <None Remove="Resources\Skillicons\Sunder.png" />
+    <None Remove="Resources\Skillicons\SuperchargedSlam.png" />
+    <None Remove="Resources\Skillicons\TempestBell.png" />
+    <None Remove="Resources\Skillicons\TemporalChains.png" />
+    <None Remove="Resources\Skillicons\ThunderousLeap.png" />
+    <None Remove="Resources\Skillicons\TimeFreeze.png" />
+    <None Remove="Resources\Skillicons\TimeSnap.png" />
+    <None Remove="Resources\Skillicons\TornadoShot.png" />
+    <None Remove="Resources\Skillicons\ToxicDomain.png" />
+    <None Remove="Resources\Skillicons\ToxicGrowth.png" />
+    <None Remove="Resources\Skillicons\Twister.png" />
+    <None Remove="Resources\Skillicons\UnboundAvatar.png" />
+    <None Remove="Resources\Skillicons\Unearth.png" />
+    <None Remove="Resources\Skillicons\VaultingImpact.png" />
+    <None Remove="Resources\Skillicons\VineArrow.png" />
+    <None Remove="Resources\Skillicons\VolatileDead.png" />
+    <None Remove="Resources\Skillicons\VolcanicFissure.png" />
+    <None Remove="Resources\Skillicons\VoltaicMark.png" />
+    <None Remove="Resources\Skillicons\Vulnerability.png" />
+    <None Remove="Resources\Skillicons\WeaponGrantedChaosBolt.png" />
+    <None Remove="Resources\Skillicons\WhirlingSlash.png" />
+    <None Remove="Resources\Skillicons\WhirlwindLance.png" />
+    <None Remove="Resources\Skillicons\WindSerpentsFury.png" />
+    <None Remove="Resources\Skillicons\Wither.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Skillicons\**\*.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClickableTransparentOverlay" Version="11.1.0" />
+    <PackageReference Include="ImGui.NET" Version="1.91.6.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="ProcessMemoryUtilities.Net" Version="1.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GameHelper">
+      <HintPath>Libs\GameHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="GameOffsets">
+      <HintPath>Libs\GameOffsets.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Libs\GameHelper.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Libs\GameOffsets.dll">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
