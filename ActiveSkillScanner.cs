@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+    using GameHelper.RemoteEnums;
     using GameHelper.RemoteObjects.Components;
     using GameOffsets.Natives;
     using GameOffsets.Objects.Components;
@@ -15,7 +16,7 @@
         public string Name { get; init; } = "";
         public ActiveSkillDetails Details { get; init; }
         public IntPtr EntryPtr { get; init; }
-        public List<(string Label, decimal Value)> Metrics { get; init; } = new();
+        public List<(string Label, decimal Value)> Metrics { get; init; } = [];
     }
 
     internal static class ActiveSkillScanner
@@ -28,7 +29,7 @@
             public Dictionary<string, SkillEyeRow> BestRowsByName = new(StringComparer.OrdinalIgnoreCase);
         }
 
-        private static readonly Dictionary<IntPtr, CacheEntry> _cacheByActorAddress = new();
+        private static readonly Dictionary<IntPtr, CacheEntry> _cacheByActorAddress = [];
 
         private static readonly Dictionary<string, int> _metricWeightsByLabel = new(StringComparer.OrdinalIgnoreCase)
         {
@@ -238,17 +239,6 @@
             return entryPtr != IntPtr.Zero;
         }
 
-        private static class StatIds
-        {
-            public const int DisplaySkillCooldownTimeMs = 20918;
-            public const int HundredTimesDamagePerSecond = 686;
-            public const int HundredTimesAttacksPerSecond = 685;
-            public const int HundredTimesAverageDamagePerHit = 1977;
-            public const int IntermediaryFireSkillDotAreaDamagePerMinute = 7585;
-            public const int IntermediaryChaosSkillDotDamagePerMinute = 7596;
-            public const int BaseSkillShowAverageInsteadOfDps = 1979;
-        }
-
         private static List<(string Label, decimal Value)> CollectSkillMetrics(IntPtr statsPtr)
         {
             var result = new List<(string, decimal)>(6);
@@ -270,13 +260,13 @@
                 var statId = statPairs[i].StatId;
                 var value = statPairs[i].Value;
 
-                if (statId == StatIds.DisplaySkillCooldownTimeMs) cooldownMs = value;
-                else if (statId == StatIds.HundredTimesDamagePerSecond) damagePerSecondHundred = value;
-                else if (statId == StatIds.HundredTimesAttacksPerSecond) attacksPerSecondHundred = value;
-                else if (statId == StatIds.HundredTimesAverageDamagePerHit) averageDamagePerHitHundred = value;
-                else if (statId == StatIds.IntermediaryFireSkillDotAreaDamagePerMinute) dotFirePerMinute = value;
-                else if (statId == StatIds.IntermediaryChaosSkillDotDamagePerMinute) dotChaosPerMinute = value;
-                else if (statId == StatIds.BaseSkillShowAverageInsteadOfDps) baseAverageHundred = value;
+                if (statId == (int)GameStats.display_skill_cooldown_time_ms) cooldownMs = value;
+                else if (statId == (int)GameStats.hundred_times_damage_per_second) damagePerSecondHundred = value;
+                else if (statId == (int)GameStats.hundred_times_attacks_per_second) attacksPerSecondHundred = value;
+                else if (statId == (int)GameStats.hundred_times_average_damage_per_hit) averageDamagePerHitHundred = value;
+                else if (statId == (int)GameStats.intermediary_fire_skill_dot_damage_to_deal_per_minute) dotFirePerMinute = value;
+                else if (statId == (int)GameStats.intermediary_chaos_skill_dot_damage_to_deal_per_minute) dotChaosPerMinute = value;
+                else if (statId == (int)GameStats.base_skill_show_average_damage_instead_of_dps) baseAverageHundred = value;
             }
 
             if (cooldownMs.HasValue && cooldownMs.Value > 0) result.Add(("CooldownMs", cooldownMs.Value));

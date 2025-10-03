@@ -21,7 +21,7 @@
 
         public static T[] ReadArray<T>(IntPtr address, int count) where T : unmanaged
         {
-            if (address == IntPtr.Zero || count <= 0) return Array.Empty<T>();
+            if (address == IntPtr.Zero || count <= 0) return [];
             EnsureProcessHandle();
             T[] buffer = new T[count];
             NativeWrapper.ReadProcessMemoryArray(_handle, address, buffer);
@@ -31,10 +31,10 @@
         public static T[] ReadStdVector<T>(StdVector vector) where T : unmanaged
         {
             long lengthBytes = vector.Last.ToInt64() - vector.First.ToInt64();
-            if (lengthBytes <= 0) return Array.Empty<T>();
+            if (lengthBytes <= 0) return [];
 
             int elementSize = Marshal.SizeOf<T>();
-            if (elementSize <= 0 || (lengthBytes % elementSize) != 0) return Array.Empty<T>();
+            if (elementSize <= 0 || (lengthBytes % elementSize) != 0) return [];
 
             int count = (int)(lengthBytes / elementSize);
             return ReadArray<T>(vector.First, count);

@@ -26,7 +26,7 @@
         // Colors
         public Vector4 UsableBorder = new(0.31f, 0.78f, 0.47f, 1.0f);
         public Vector4 NotUsableBorder = new(0.90f, 0.25f, 0.25f, 1.0f);
-        public Vector4 NotUsableOverlay = new(0f, 0f, 0f, 0.35f);
+        public Vector4 NotUsableOverlay = new(0.90f, 0.25f, 0.25f, 1.0f);
         public Vector4 FallbackIconColor = new(0.2f, 0.2f, 0.2f, 1.0f);
 
         // Text
@@ -35,12 +35,11 @@
         public float SkillTextOutlineThickness = 1.25f;
 
         // Grid
-        public bool UseGrid = false;
-        public bool GridLocked = true;
+        public bool UseGrid = true;
+        public bool GridLocked = false;
         public int GridColumns = 4;
-        public int GridTileSize = 128; // pixel side
+        public int GridTileSize = 128;
         public float GridGap = 4.0f;
-        public bool GridShowLabels = true;
         public string GridWindowName = "SkillEye Grid";
     }
 }

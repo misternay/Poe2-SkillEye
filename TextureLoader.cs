@@ -16,7 +16,7 @@
 
         private readonly Dictionary<string, TextureInfo> _loadedTexturesByKey = new(StringComparer.OrdinalIgnoreCase);
         private readonly HashSet<string> _lastDesiredKeys = new(StringComparer.OrdinalIgnoreCase);
-        private string[] _lastSearchDirectories = Array.Empty<string>();
+        private string[] _lastSearchDirectories = [];
 
         private readonly string _cacheDirectory;
         private readonly bool _deleteCacheOnProcessExit;
@@ -145,7 +145,7 @@
         /// <summary>
         ///     Returns a snapshot list of currently loaded texture keys.
         /// </summary>
-        public List<string> TextureKeys => new(_loadedTexturesByKey.Keys);
+        public List<string> TextureKeys => [.. _loadedTexturesByKey.Keys];
 
         /// <summary>
         ///     Total number of textures currently loaded.
@@ -279,7 +279,7 @@
         public void Invalidate()
         {
             _lastDesiredKeys.Clear();
-            _lastSearchDirectories = Array.Empty<string>();
+            _lastSearchDirectories = [];
         }
 
         private static bool DirectoriesEqual(string[] directoriesA, string[] directoriesB)

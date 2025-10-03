@@ -27,8 +27,8 @@
         private readonly HashSet<string> _pinnedSkillNames = new(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<string, bool> _pinnedSkillIsLocked = new(StringComparer.OrdinalIgnoreCase);
 
-        private static readonly string[] _trimTags = new[] { "Skill", "Player", "Enemy", "Projectile", "Active" };
-        private static readonly HashSet<char> _invalidFileNameCharSet = new(Path.GetInvalidFileNameChars());
+        private static readonly string[] _trimTags = ["Skill", "Player", "Enemy", "Projectile", "Active"];
+        private static readonly HashSet<char> _invalidFileNameCharSet = [.. Path.GetInvalidFileNameChars()];
 
         private string _statusMessage = "Ready.";
         private string _selectedSkillName = null;
@@ -190,7 +190,6 @@
                 ImGui.SliderInt("Grid Columns", ref Settings.GridColumns, 1, 10);
                 ImGui.SliderInt("Grid Tile Size", ref Settings.GridTileSize, 64, 256);
                 ImGui.SliderFloat("Grid Gap", ref Settings.GridGap, 0f, 24f);
-                ImGui.Checkbox("Show Labels", ref Settings.GridShowLabels);
             }
 
             ImGui.Separator();
@@ -226,7 +225,7 @@
         {
             try
             {
-                Settings.PinnedSkills = new(_pinnedSkillNames);
+                Settings.PinnedSkills = [.. _pinnedSkillNames];
                 Settings.PinnedStatus = new Dictionary<string, bool>(_pinnedSkillIsLocked, StringComparer.OrdinalIgnoreCase);
 
                 var settingsDirectory = Path.GetDirectoryName(SettingPathname);
@@ -311,8 +310,8 @@
                 }
             } while (changed);
 
-            var withoutWhitespace = new string(trimmed.Where(c => !char.IsWhiteSpace(c)).ToArray()).ToLowerInvariant();
-            var safeForFileSystem = new string(withoutWhitespace.Select(c => _invalidFileNameCharSet.Contains(c) ? '_' : c).ToArray());
+            var withoutWhitespace = new string([.. trimmed.Where(c => !char.IsWhiteSpace(c))]).ToLowerInvariant();
+            var safeForFileSystem = new string([.. withoutWhitespace.Select(c => _invalidFileNameCharSet.Contains(c) ? '_' : c)]);
             return safeForFileSystem;
         }
 
@@ -653,27 +652,6 @@
                     0, ImDrawFlags.None, Settings.BorderThickness);
             }
 
-            // Label at bottom
-            {
-                var font = ImGui.GetFont();
-                float baseFontPx = font.FontSize;
-                float uiScale = Math.Max(0.6f, Math.Min(1.4f, squareSideSize / 140f));
-                float scaledFontPx = baseFontPx * uiScale;
-
-                var baseLabelSize = ImGui.CalcTextSize(skillName);
-                var scaledLabelSize = baseLabelSize * uiScale;
-
-                var labelPosition = new Vector2(
-                    windowPosition.X + Settings.IconPadding,
-                    windowPosition.Y + windowSize.Y - scaledLabelSize.Y - Settings.IconPadding * 0.5f
-                );
-
-                var outlineColor = Settings.SkillTextOutlineColor; outlineColor.W *= globalAlpha;
-                var textColor = Settings.SkillTextColor; textColor.W *= globalAlpha;
-
-                AddOutlinedText(drawList, font, scaledFontPx, labelPosition, skillName, outlineColor, textColor, Math.Max(1f, Settings.SkillTextOutlineThickness));
-            }
-
             bool interactive = !isLocked || overrideInputs;
             if (interactive && DrawLockButton($"skill_{skillName}", isLocked, true, Settings.LockButtonSize))
             {
@@ -835,11 +813,10 @@
                 borderColor.W *= globalAlpha;
                 drawList.AddRect(tileMin, tileMax, ImGui.GetColorU32(borderColor), 0, ImDrawFlags.None, borderThickness);
 
-                List<(string Label, decimal Value)> metricsList = null;
-                if (!ActiveSkillScanner.TryGetLiveMetrics(playerActor, skillName, out metricsList))
+                if (!ActiveSkillScanner.TryGetLiveMetrics(playerActor, skillName, out List<(string Label, decimal Value)> metricsList))
                 {
                     if (_bestRowBySkillName.TryGetValue(skillName, out var bestRow) && bestRow.Metrics?.Count > 0)
-                        metricsList = new List<(string, decimal)>(bestRow.Metrics);
+                        metricsList = [.. bestRow.Metrics];
                 }
 
                 if (!isUsable && !IsCooldownSuppressed(skillName))
@@ -872,14 +849,6 @@
                         textCursor.Y += lineSize.Y * 0.95f;
                         if (++lines >= 3) break; // keep grid readable
                     }
-                }
-
-                if (Settings.GridShowLabels)
-                {
-                    var baseLabelSize = ImGui.CalcTextSize(skillName);
-                    var scaledLabel = baseLabelSize * uiScale;
-                    var labelPos = new Vector2(tileMin.X + padding, tileMax.Y - scaledLabel.Y - padding * 0.5f);
-                    AddOutlinedText(drawList, font, scaledFontPx, labelPos, skillName, outlineColorBase, textColorBase, outlinePx);
                 }
 
                 if (!Settings.GridLocked || overrideInputs)
