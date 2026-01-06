@@ -1,9 +1,9 @@
 name: Build and Deploy (minimal zip)
 
 on:
-  push:
+  push: 
     tags: [ 'v*' ]
-  workflow_dispatch:
+  workflow_dispatch: 
 
 permissions:
   contents: write
@@ -12,7 +12,7 @@ jobs:
   build-and-release:
     runs-on: windows-latest
 
-    steps:
+    steps: 
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -27,15 +27,19 @@ jobs:
       - name: Set build version from tag
         shell: pwsh
         run: |
-          $v = "${{ github.ref_name }}" -replace '^v',''
+          if ("${{ github.ref_type }}" -eq "tag") {
+            $v = "${{ github. ref_name }}" -replace '^v',''
+          } else {
+            $v = "0.0.0-dev"
+          }
           "VERSION=$v" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
 
       - name: Build (Release) to known folder
-        run: dotnet build SkillEye.csproj -c Release --no-restore -p:Version=$env:VERSION -o build
+        run: dotnet build SkillEye. csproj -c Release --no-restore -p:Version=$env:VERSION -o build
 
       - name: Stage minimal files (SkillEye.dll)
         shell: pwsh
-        run: |
+        run:  |
           if (-not (Test-Path "build\SkillEye.dll")) { throw "SkillEye.dll not found in .\build" }
 
           New-Item -ItemType Directory -Path "package" -Force | Out-Null
@@ -44,13 +48,13 @@ jobs:
           Write-Host "Packaged contents:"
           Get-ChildItem -Recurse package | ForEach-Object { $_.FullName }
 
-      - name: Zip
+      - name:  Zip
         shell: pwsh
         run: Compress-Archive -Path "package\*" -DestinationPath "SkillEye-${{ github.ref_name }}.zip"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: SkillEye-${{ github.ref_name }}
-          files: ${{ github.workspace }}/SkillEye-${{ github.ref_name }}.zip
+          name: SkillEye-${{ github. ref_name }}
+          files:  ${{ github.workspace }}/SkillEye-${{ github.ref_name }}.zip
           generate_release_notes: true
