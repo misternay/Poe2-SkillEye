@@ -28,14 +28,14 @@ jobs:
         shell: pwsh
         run: |
           if ("${{ github.ref_type }}" -eq "tag") {
-            $v = "${{ github. ref_name }}" -replace '^v',''
+            $v = "${{ github.ref_name }}" -replace '^v',''
           } else {
             $v = "0.0.0-dev"
           }
           "VERSION=$v" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
 
       - name: Build (Release) to known folder
-        run: dotnet build SkillEye. csproj -c Release --no-restore -p:Version=$env:VERSION -o build
+        run: dotnet build SkillEye.csproj -c Release --no-restore -p:Version=$env:VERSION -o build
 
       - name: Stage minimal files (SkillEye.dll)
         shell: pwsh
@@ -55,6 +55,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: SkillEye-${{ github. ref_name }}
+          name: SkillEye-${{ github.ref_name }}
           files:  ${{ github.workspace }}/SkillEye-${{ github.ref_name }}.zip
           generate_release_notes: true
